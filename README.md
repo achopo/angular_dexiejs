@@ -1,5 +1,11 @@
 ## Global Architecture
 
+Models → represent tables (UML)
+
+Services → business logic + Dexie CRUD
+
+Components → UI (list, add , delete ...)
+
 - **models/**
   - `client.model.ts`
   - `product.model.ts`
