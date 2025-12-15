@@ -1,0 +1,20 @@
+<h2>Clients</h2>
+
+<div>
+  <input #cin placeholder="CIN" />
+  <input #name placeholder="Name" />
+  <button (click)="add({ cin: cin.value, name: name.value })">Add</button>
+</div>
+
+@if (clients().length === 0) {
+  <p>No clients yet</p>
+} @else {
+  <ul>
+    @for (client of clients(); track client.cin) {
+      <li (click)="select(client)" style="cursor: pointer">
+        {{ client.cin }} - {{ client.name }}
+        <button (click)="delete(client.cin); $event.stopPropagation()">Delete</button>
+      </li>
+    }
+  </ul>
+}

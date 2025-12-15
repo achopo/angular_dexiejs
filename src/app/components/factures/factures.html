@@ -1,0 +1,41 @@
+<h2>Factures</h2>
+
+@if (!selectedClientCin()) {
+  <p>Select a client to see factures</p>
+}
+@else {
+
+  <input #date type="date" />
+  <button (click)="createFactureForClient(date.value)">
+    Add Facture
+  </button>
+
+  @if (factures().length === 0) {
+    <p>No factures</p>
+  }
+  @else {
+    <ul>
+      @for (f of factures(); track f.numFacture) {
+        <li (click)="selectFacture(f.numFacture!)">
+          Facture #{{ f.numFacture }} — {{ f.date | date }}
+
+          <button
+            (click)="delete(f.numFacture!); $event.stopPropagation()">
+            Delete
+          </button>
+        </li>
+      }
+    </ul>
+  }
+
+  @if (selectedFacture()) {
+    <ul>
+      @for (line of factureLines(); track line.productId) {
+        <li>
+          Product {{ line.productId }} — Qty {{ line.quantity }}
+        </li>
+      }
+    </ul>
+  }
+
+}

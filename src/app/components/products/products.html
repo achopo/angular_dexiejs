@@ -1,0 +1,20 @@
+<h2>Products</h2>
+
+<div>
+  <input #name placeholder="Name" />
+  <input #price type="number" placeholder="Price" />
+  <button (click)="add({ name: name.value, price: +price.value })">Add</button>
+</div>
+
+@if (products().length === 0) {
+  <p>No products yet</p>
+} @else {
+  <ul>
+    @for (product of products(); track product.id) {
+      <li>
+        {{ product.name }} - {{ product.price }}
+        <button (click)="delete(product.id!)">Delete</button>
+      </li>
+    }
+  </ul>
+}
